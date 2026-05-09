@@ -6,7 +6,7 @@ export default function InstructorDetailPage() {
     return (
         <div>
             <h1>Instructor Detail Page</h1>
-            <p>Showing instructor with ID: {id}</p>
+            <p>Instructor ID: {id}</p>
         </div>
     );
 }
