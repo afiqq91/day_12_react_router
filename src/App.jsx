@@ -7,37 +7,43 @@ import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
+import MainLayout from "./layouts/MainLayout";
+
 function App() {
     return (
         <BrowserRouter>
             <Routes>
 
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={<MainLayout />}>
 
-                <Route
-                    path="/instructors"
-                    element={<InstructorListPage />}
-                />
+                    <Route index element={<HomePage />} />
 
-                <Route
-                    path="/instructors/:id"
-                    element={<InstructorDetailPage />}
-                />
+                    <Route
+                        path="instructors"
+                        element={<InstructorListPage />}
+                    />
 
-                <Route
-                    path="/login"
-                    element={<LoginPage />}
-                />
+                    <Route
+                        path="instructors/:id"
+                        element={<InstructorDetailPage />}
+                    />
 
-                <Route
-                    path="/dashboard"
-                    element={<DashboardPage />}
-                />
+                    <Route
+                        path="login"
+                        element={<LoginPage />}
+                    />
 
-                <Route
-                    path="*"
-                    element={<NotFoundPage />}
-                />
+                    <Route
+                        path="dashboard"
+                        element={<DashboardPage />}
+                    />
+
+                    <Route
+                        path="*"
+                        element={<NotFoundPage />}
+                    />
+
+                </Route>
 
             </Routes>
         </BrowserRouter>
