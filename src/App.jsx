@@ -1,49 +1,45 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
-import InstructorListPage from "./pages/InstructorListPage";
-import InstructorDetailPage from "./pages/InstructorDetailPage";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
-import NotFoundPage from "./pages/NotFoundPage";
+import InstructorListPage from "./pages/InstructorListPage";
+import InstructorDetailsPage from "./pages/InstructorDetailPage";
 
-import MainLayout from "./layouts/MainLayout";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
 
-                <Route path="/" element={<MainLayout />}>
+                {/* PUBLIC ROUTES */}
+                <Route path="/" element={<HomePage />} />
 
-                    <Route index element={<HomePage />} />
+                <Route
+                    path="/login"
+                    element={<LoginPage />}
+                />
 
-                    <Route
-                        path="instructors"
-                        element={<InstructorListPage />}
-                    />
+                <Route
+                    path="/instructors"
+                    element={<InstructorListPage />}
+                />
 
-                    <Route
-                        path="instructors/:id"
-                        element={<InstructorDetailPage />}
-                    />
+                <Route
+                    path="/instructors/:id"
+                    element={<InstructorDetailsPage />}
+                />
 
-                    <Route
-                        path="login"
-                        element={<LoginPage />}
-                    />
-
-                    <Route
-                        path="dashboard"
-                        element={<DashboardPage />}
-                    />
-
-                    <Route
-                        path="*"
-                        element={<NotFoundPage />}
-                    />
-
-                </Route>
+                {/* PROTECTED ROUTE */}
+                <Route
+                    path="/dashboard"
+                    element={
+                        <ProtectedRoute>
+                            <DashboardPage />
+                        </ProtectedRoute>
+                    }
+                />
 
             </Routes>
         </BrowserRouter>

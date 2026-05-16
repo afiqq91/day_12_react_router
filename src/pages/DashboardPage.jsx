@@ -1,8 +1,23 @@
-export default function DashboardPage() {
+import { useNavigate } from "react-router-dom";
+
+function DashboardPage() {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+
+        navigate("/login");
+    };
+
     return (
         <div>
-            <h1>Dashboard Page</h1>
-            <p>Welcome to your dashboard.</p>
+            <h1>Dashboard</h1>
+
+            <button onClick={handleLogout}>
+                Logout
+            </button>
         </div>
     );
 }
+
+export default DashboardPage;
